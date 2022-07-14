@@ -40,7 +40,7 @@ public class QueryProcessor {
         } else if (query.contains("^")) {
             return Math.pow(Integer.parseInt(query.split("\\^")[0]), Integer.parseInt(query.split("\\^")[1])) + "";
         } else if (query.contains("largest")) {
-            String numbers = query.split(":")[1];
+            String numbers = query.split(":")[1].replace(" ", "");
             String[] numbersArray = numbers.split(",");
             int largest = Integer.parseInt(numbersArray[0]);
             for (int i = 1; i < numbersArray.length; i++) {
@@ -52,5 +52,10 @@ public class QueryProcessor {
         } else { // TODO extend the programm here
             return "";
         }
+    }
+
+    public static void main(String[] args) {
+        QueryProcessor queryProcessor = new QueryProcessor();
+        System.out.println(queryProcessor.process("what is the largest number of the following numbers: 1,2,3,4,5,6,7,8,9,10"));
     }
 }
