@@ -22,22 +22,28 @@ public class QueryProcessor {
         } else if (query.contains("age")) {
             return "0";
         } else if (query.contains("+") || query.contains("plus")) {
+            query = query.replace(" ", "");
             return query.contains("+") ? Integer.parseInt(query.split("\\+")[0]) + Integer.parseInt(query.split("\\+")[1]) + ""
                     : Integer.parseInt(query.split("plus")[0]) + Integer.parseInt(query.split("plus")[1]) + "";
         } else if (query.contains("-") || query.contains("minus")) {
+            query = query.replace(" ", "");
             return query.contains("-") ? Integer.parseInt(query.split("\\-")[0]) - Integer.parseInt(query.split("\\-")[1]) + ""
                     : Integer.parseInt(query.split("minus")[0]) - Integer.parseInt(query.split("minus")[1]) + "";
         } else if (query.contains("*") || query.contains("times")) {
+            query = query.replace(" ", "");
             return query.contains("*") ? Integer.parseInt(query.split("\\*")[0]) * Integer.parseInt(query.split("\\*")[1]) + ""
                     : Integer.parseInt(query.split("times")[0]) * Integer.parseInt(query.split("times")[1]) + "";
         } else if (query.contains("/") || query.contains("divided by")) {
+            query = query.replace(" ", "");
             return query.contains("/") ? Integer.parseInt(query.split("\\/")[0]) / Integer.parseInt(query.split("\\/")[1]) + ""
                    : Integer.parseInt(query.split("divided by")[0]) / Integer.parseInt(query.split("divided by")[1]) + "";
         } else if (query.contains("%") || query.contains("modulo") || query.contains("mod")) {
+            query = query.replace(" ", "");
             return query.contains("%") ? Integer.parseInt(query.split("\\%")[0]) % Integer.parseInt(query.split("\\%")[1]) + ""
                     : query.contains("modulo") ? Integer.parseInt(query.split("modulo")[0]) % Integer.parseInt(query.split("modulo")[1]) + ""
                     : Integer.parseInt(query.split("mod")[0]) % Integer.parseInt(query.split("mod")[1]) + "";
         } else if (query.contains("^")) {
+            query = query.replace(" ", "");
             return Math.pow(Integer.parseInt(query.split("\\^")[0]), Integer.parseInt(query.split("\\^")[1])) + "";
         } else if (query.contains("largest")) {
             String numbers = query.split(":")[1].replace(" ", "");
@@ -56,6 +62,6 @@ public class QueryProcessor {
 
     public static void main(String[] args) {
         QueryProcessor queryProcessor = new QueryProcessor();
-        System.out.println(queryProcessor.process("what is the largest number of the following numbers: 1,2,3,4,5,6,7,8,9,10"));
+        System.out.println(queryProcessor.process("add 34 plus 5"));
     }
 }
