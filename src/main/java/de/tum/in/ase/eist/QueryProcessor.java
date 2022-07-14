@@ -31,6 +31,7 @@ public class QueryProcessor {
                 return query.contains("+") ? Integer.parseInt(query.split("\\+")[0].substring(start)) + Integer.parseInt(query.split("\\+")[1]) + ""
                         : Integer.parseInt(query.split("plus")[0].substring(start)) + Integer.parseInt(query.split("plus")[1]) + "";
             } else if (query.contains("-") || query.contains("minus")) {
+                query = query.replace(" ", "");
                 int start = 0;
                 while (query.charAt(start) != '0' && query.charAt(start) != '1' && query.charAt(start) != '2'&& query.charAt(start) != '3' && query.charAt(start) != '4' && query.charAt(start) != '5' && query.charAt(start) != '6' && query.charAt(start) != '7' && query.charAt(start) != '8' && query.charAt(start) != '9') {
                     start++;
@@ -38,6 +39,7 @@ public class QueryProcessor {
                 return query.contains("-") ? Integer.parseInt(query.split("\\-")[0].substring(start)) - Integer.parseInt(query.split("\\-")[1]) + ""
                         : Integer.parseInt(query.split("minus")[0].substring(start)) - Integer.parseInt(query.split("minus")[1]) + "";
             } else if (query.contains("*") || query.contains("times")) {
+                query = query.replace(" ", "");
                 int start = 0;
                 while (query.charAt(start) != '0' && query.charAt(start) != '1' && query.charAt(start) != '2'&& query.charAt(start) != '3' && query.charAt(start) != '4' && query.charAt(start) != '5' && query.charAt(start) != '6' && query.charAt(start) != '7' && query.charAt(start) != '8' && query.charAt(start) != '9') {
                     start++;
@@ -45,6 +47,7 @@ public class QueryProcessor {
                 return query.contains("*") ? Integer.parseInt(query.split("\\*")[0].substring(start)) * Integer.parseInt(query.split("\\*")[1]) + ""
                         : Integer.parseInt(query.split("times")[0].substring(start)) * Integer.parseInt(query.split("times")[1]) + "";
             } else if (query.contains("/") || query.contains("divided by")) {
+                query = query.replace(" ", "");
                 int start = 0;
                 while (query.charAt(start) != '0' && query.charAt(start) != '1' && query.charAt(start) != '2'&& query.charAt(start) != '3' && query.charAt(start) != '4' && query.charAt(start) != '5' && query.charAt(start) != '6' && query.charAt(start) != '7' && query.charAt(start) != '8' && query.charAt(start) != '9') {
                     start++;
@@ -52,6 +55,7 @@ public class QueryProcessor {
                 return query.contains("/") ? Integer.parseInt(query.split("\\/")[0].substring(start)) / Integer.parseInt(query.split("\\/")[1]) + ""
                         : Integer.parseInt(query.split("divided by")[0].substring(start)) / Integer.parseInt(query.split("divided by")[1]) + "";
             } else if (query.contains("%") || query.contains("modulo") || query.contains("mod")) {
+                query = query.replace(" ", "");
                 int start = 0;
                 while (query.charAt(start) != '0' && query.charAt(start) != '1' && query.charAt(start) != '2'&& query.charAt(start) != '3' && query.charAt(start) != '4' && query.charAt(start) != '5' && query.charAt(start) != '6' && query.charAt(start) != '7' && query.charAt(start) != '8' && query.charAt(start) != '9') {
                     start++;
@@ -60,6 +64,7 @@ public class QueryProcessor {
                         : query.contains("modulo") ? Integer.parseInt(query.split("modulo")[0]) % Integer.parseInt(query.split("modulo")[1]) + ""
                         : Integer.parseInt(query.split("mod")[0].substring(start)) % Integer.parseInt(query.split("mod")[1]) + "";
             } else if (query.contains("^")) {
+                query = query.replace(" ", "");
                 return Math.pow(Integer.parseInt(query.split("\\^")[0]), Integer.parseInt(query.split("\\^")[1])) + "";
             } else if (query.contains("largest")) {
                 String numbers = query.split(":")[1].replace(" ", "");
@@ -71,7 +76,7 @@ public class QueryProcessor {
                     }
                 }
                 return largest + "";
-            } else { // TODO extend the programm here
+            } else {
                 return "";
             }
         }
