@@ -2,6 +2,8 @@ package de.tum.in.ase.eist;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
+
 @Service
 public class QueryProcessor {
 
@@ -19,6 +21,34 @@ public class QueryProcessor {
             return "no, don't hack me!";
         } else if (query.contains("age")) {
             return "0";
+        } else if (query.contains("+") || query.contains("plus")) {
+            return query.contains("+") ? Integer.parseInt(query.split("\\+")[0]) + Integer.parseInt(query.split("\\+")[1]) + ""
+                    : Integer.parseInt(query.split("plus")[0]) + Integer.parseInt(query.split("plus")[1]) + "";
+        } else if (query.contains("-") || query.contains("minus")) {
+            return query.contains("-") ? Integer.parseInt(query.split("\\-")[0]) - Integer.parseInt(query.split("\\-")[1]) + ""
+                    : Integer.parseInt(query.split("minus")[0]) - Integer.parseInt(query.split("minus")[1]) + "";
+        } else if (query.contains("*") || query.contains("times")) {
+            return query.contains("*") ? Integer.parseInt(query.split("\\*")[0]) * Integer.parseInt(query.split("\\*")[1]) + ""
+                    : Integer.parseInt(query.split("times")[0]) * Integer.parseInt(query.split("times")[1]) + "";
+        } else if (query.contains("/") || query.contains("divided by")) {
+            return query.contains("/") ? Integer.parseInt(query.split("\\/")[0]) / Integer.parseInt(query.split("\\/")[1]) + ""
+                   : Integer.parseInt(query.split("divided by")[0]) / Integer.parseInt(query.split("divided by")[1]) + "";
+        } else if (query.contains("%") || query.contains("modulo") || query.contains("mod")) {
+            return query.contains("%") ? Integer.parseInt(query.split("\\%")[0]) % Integer.parseInt(query.split("\\%")[1]) + ""
+                    : query.contains("modulo") ? Integer.parseInt(query.split("modulo")[0]) % Integer.parseInt(query.split("modulo")[1]) + ""
+                    : Integer.parseInt(query.split("mod")[0]) % Integer.parseInt(query.split("mod")[1]) + "";
+        } else if (query.contains("^")) {
+            return Math.pow(Integer.parseInt(query.split("\\^")[0]), Integer.parseInt(query.split("\\^")[1])) + "";
+        } else if (query.contains("largest")) {
+            String numbers = query.split(":")[1];
+            String[] numbersArray = numbers.split(",");
+            int largest = Integer.parseInt(numbersArray[0]);
+            for (int i = 1; i < numbersArray.length; i++) {
+                if (Integer.parseInt(numbersArray[i]) > largest) {
+                    largest = Integer.parseInt(numbersArray[i]);
+                }
+            }
+            return largest + "";
         } else { // TODO extend the programm here
             return "";
         }
