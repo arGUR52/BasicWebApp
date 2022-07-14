@@ -17,6 +17,8 @@ public class QueryProcessor {
             return "#33400";
         } else if (query.contains("email")) {
             return "no, don't hack me!";
+        } else if (query.contains("age")) {
+            return "0";
         } else { // TODO extend the programm here
             return "";
         }
